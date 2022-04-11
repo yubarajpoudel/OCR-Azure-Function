@@ -60,16 +60,17 @@ class VinOcr:
             text = pytesseract.image_to_string(cropped)
             recognized_texts.append(text)
         print(f"recognized_text = {len(recognized_texts)}")
-        if recognized_texts:
-            #Apply Regex to get the Vin Number
-            pattern =  r"[a-zA-Z0-9]{17}"
+        return recognized_texts
+        # if recognized_texts:
+        #     #Apply Regex to get the Vin Number
+        #     pattern =  r"[a-zA-Z0-9]{17}"
 
-            recognized_texts_in_string = ' '.join(recognized_texts)
-            print(recognized_texts_in_string)
-            vin_number = re.search(pattern, recognized_texts_in_string).group()
+        #     recognized_texts_in_string = ' '.join(recognized_texts)
+        #     print(recognized_texts_in_string)
+        #     vin_number = re.search(pattern, recognized_texts_in_string).group()
 
-            print(f"Vin Number = {vin_number}")
-            return vin_number
-        else:
-            return "Vin number not found"
+        #     print(f"Vin Number = {vin_number}")
+        #     return vin_number
+        # else:
+        #     return "Vin number not found"
     
