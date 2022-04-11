@@ -2,6 +2,7 @@ import cv2
 import pytesseract
 import re
 import numpy as np
+import json
 
 # Mention the installed location of Tesseract-OCR in your system
 #pytesseract.pytesseract.tesseract_cmd = 'System_path_to_tesseract.exe'
@@ -59,8 +60,8 @@ class VinOcr:
             # Apply OCR on the cropped image
             text = pytesseract.image_to_string(cropped)
             recognized_texts.append(text)
-        print(f"recognized_text = {len(recognized_texts)}")
-        return recognized_texts
+        #print(f"recognized_text = {len(recognized_texts)}")
+        return json.dumps(recognized_texts)
         # if recognized_texts:
         #     #Apply Regex to get the Vin Number
         #     pattern =  r"[a-zA-Z0-9]{17}"
