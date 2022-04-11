@@ -11,7 +11,7 @@ class VinOcr:
     def __init__(self) -> None:
         pass
 
-    def get_vin_number(imageFile):
+    def get_vin_number(self, imageFile):
         img = cv2.imread(imageFile)
         
         # Preprocessing the image starts
