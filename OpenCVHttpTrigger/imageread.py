@@ -59,7 +59,7 @@ class VinOcr:
             cropped = im2[y:y + h, x:x + w]
 
             # Apply OCR on the cropped image
-            text = pytesseract.image_to_string(cropped, lang='eng', config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789')
+            text = pytesseract.image_to_string(cropped, lang='eng', config='--psm 10 --oem 3 -c tessedit_char_whitelist=01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-')
             recognized_texts.append(text)
         print(f"recognized_text = {len(recognized_texts)}")
         #return json.dumps(recognized_texts)
