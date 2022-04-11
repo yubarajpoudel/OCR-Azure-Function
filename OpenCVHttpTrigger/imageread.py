@@ -17,7 +17,7 @@ class VinOcr:
         pass
 
     def get_vin_number(self, image):
-        img = Image.open(img)
+        img = Image.open(image)
         img = img.save("../assets/img.jpg")
         img = cv2.imread("../assets/img.jpg")
         #img = cv2.imdecode(np.fromstring(image.read(), np.uint8), cv2.IMREAD_UNCHANGED)
