@@ -43,9 +43,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     vin_number = vin_ocr.get_vin_number(image)
     # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition
     headers = {
-        'Content-Type': 'image/jpeg',
-        'Content-Disposition': 'attachment; filename="image.jpg"',
-        'Access-Control-Allow_Origin': '*'
+        # 'Content-Type': 'image/jpeg',
+        # 'Content-Disposition': 'attachment; filename="image.jpg"',
+        'Access-Control-Allow_Origin': '*',
+        'mimetype':'application/json'
     }
 
     return func.HttpResponse(
