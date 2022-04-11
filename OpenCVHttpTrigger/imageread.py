@@ -1,3 +1,4 @@
+from email import message
 import cv2
 import pytesseract
 import re
@@ -58,20 +59,23 @@ class VinOcr:
             cropped = im2[y:y + h, x:x + w]
 
             # Apply OCR on the cropped image
-            text = pytesseract.image_to_string(cropped, config="--psm 13")
+            text = pytesseract.image_to_string(cropped, config="--psm 7")
             recognized_texts.append(text)
         print(f"recognized_text = {len(recognized_texts)}")
-        return json.dumps(recognized_texts)
-        # if recognized_texts:
-        #     #Apply Regex to get the Vin Number
-        #     pattern =  r"[a-zA-Z0-9]{17}"
+        #return json.dumps(recognized_texts)
+        if recognized_texts:
+            #Apply Regex to get the Vin Number
+            pattern =  r"[a-zA-Z0-9]{17}"
 
-        #     recognized_texts_in_string = ' '.join(recognized_texts)
-        #     print(recognized_texts_in_string)
-        #     vin_number = re.search(pattern, recognized_texts_in_string).group()
-
-        #     print(f"Vin Number = {vin_number}")
-        #     return vin_number
-        # else:
-        #     return "Vin number not found"
+            recognized_texts_in_string = ' '.join(recognized_texts)
+            print(recognized_texts_in_string)
+            matched = re.search(pattern, recognized_texts_in_string)
+            if matched:
+                vin_number = matched.group()
+                print(f"Vin Number = {vin_number}")
+                return json.dumps({"vin_number": vin_number, "message": "fetched vin number successfully"})
+            else:
+                return json.dumps({"vin_number": "", "message": "Vin number not found"})
+        else:
+            return json.dumps({"message": "Vin number not found"})
     
