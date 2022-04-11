@@ -1,7 +1,8 @@
 import cv2
 import pytesseract
 import re
- 
+import numpy as np
+
 # Mention the installed location of Tesseract-OCR in your system
 #pytesseract.pytesseract.tesseract_cmd = 'System_path_to_tesseract.exe'
  
@@ -11,9 +12,9 @@ class VinOcr:
     def __init__(self) -> None:
         pass
 
-    def get_vin_number(self, imageFile):
+    def get_vin_number(self, image):
         # img = cv2.imread(imageFile)
-        img = imageFile
+        img = cv2.imdecode(np.fromstring(image.read(), np.uint8), cv2.IMREAD_UNCHANGED)
         
         # Preprocessing the image starts
         
