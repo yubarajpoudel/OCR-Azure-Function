@@ -12,7 +12,8 @@ class VinOcr:
         pass
 
     def get_vin_number(self, imageFile):
-        img = cv2.imread(imageFile)
+        # img = cv2.imread(imageFile)
+        img = imageFile
         
         # Preprocessing the image starts
         
