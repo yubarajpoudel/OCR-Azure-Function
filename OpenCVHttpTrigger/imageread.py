@@ -63,12 +63,12 @@ class VinOcr:
             recognized_texts.append(text)
         print(f"recognized_text = {len(recognized_texts)}")
         #return json.dumps(recognized_texts)
-        if recognized_texts:
+        if len(recognized_texts) > 0:
             #Apply Regex to get the Vin Number
             pattern =  r"[a-zA-Z0-9]{17}"
 
             recognized_texts_in_string = ' '.join(recognized_texts)
-            print(recognized_texts_in_string)
+            print(f"text in string = {recognized_texts_in_string}")
             matched = re.search(pattern, recognized_texts_in_string)
             if matched:
                 vin_number = matched.group()
