@@ -4,3 +4,4 @@ azure-functions
 numpy
 opencv-contrib-python
 pytesseract
+Pillow
