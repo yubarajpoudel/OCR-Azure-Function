@@ -14,13 +14,13 @@ class VinOcr:
     def __init__(self) -> None:
         pass
 
-    def get_vin_number(self, image):        
+    def get_vin_number(self, gray):        
         # img = cv2.imdecode(np.fromstring(image.read(), np.uint8), cv2.IMREAD_UNCHANGED)
         
         # Preprocessing the image starts
         
         # Convert the image to gray scale
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        # gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         # img = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
         
         # Performing OTSU threshold
@@ -41,7 +41,7 @@ class VinOcr:
                                                         cv2.CHAIN_APPROX_NONE)
         
         # Creating a copy of image
-        im2 = img.copy()
+        im2 = gray.copy()
 
         # Looping through the identified contours
         # Then rectangular part is cropped and passed on
