@@ -15,12 +15,13 @@ class VinOcr:
         pass
 
     def get_vin_number(self, image):        
-        img = cv2.imdecode(np.fromstring(image.read(), np.uint8), cv2.IMREAD_UNCHANGED)
+        # img = cv2.imdecode(np.fromstring(image.read(), np.uint8), cv2.IMREAD_UNCHANGED)
         
         # Preprocessing the image starts
         
         # Convert the image to gray scale
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        # img = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
         
         # Performing OTSU threshold
         ret, thresh1 = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU | cv2.THRESH_BINARY_INV)
