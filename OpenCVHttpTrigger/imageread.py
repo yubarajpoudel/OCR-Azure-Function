@@ -4,8 +4,6 @@ import pytesseract
 import re
 import numpy as np
 import json
-from PIL import Image
-
 
 # Mention the installed location of Tesseract-OCR in your system
 #pytesseract.pytesseract.tesseract_cmd = 'System_path_to_tesseract.exe'
@@ -16,11 +14,8 @@ class VinOcr:
     def __init__(self) -> None:
         pass
 
-    def get_vin_number(self, image):
-        img = Image.open(image)
-        img = img.save("../assets/img.jpg")
-        img = cv2.imread("../assets/img.jpg")
-        #img = cv2.imdecode(np.fromstring(image.read(), np.uint8), cv2.IMREAD_UNCHANGED)
+    def get_vin_number(self, image):        
+        img = cv2.imdecode(np.fromstring(image.read(), np.uint8), cv2.IMREAD_UNCHANGED)
         
         # Preprocessing the image starts
         
@@ -63,7 +58,7 @@ class VinOcr:
             cropped = im2[y:y + h, x:x + w]
 
             # Apply OCR on the cropped image
-            text = pytesseract.image_to_string(cropped, lang='eng', config='--psm 10 --oem 3 -c tessedit_char_whitelist=01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-')
+            text = pytesseract.image_to_string(cropped, lang='eng')
             recognized_texts.append(text)
         print(f"recognized_text = {len(recognized_texts)}")
         #return json.dumps(recognized_texts)
